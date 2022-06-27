@@ -3,6 +3,7 @@
   mysqli_select_db($connect, 'bookstore');
   $sql="SELECT * FROM books";
   $featured = $connect->query($sql);
+  
 ?>
 
 

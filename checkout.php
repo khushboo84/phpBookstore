@@ -6,6 +6,8 @@ $_SESSION['bookID'] = $_GET['bookID'];
 $sql="SELECT * FROM books WHERE bookID = '".$_SESSION['bookID']."'";
 $data = $connect->query($sql);
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,17 +54,33 @@ $data = $data->fetch_assoc();
 
 <form style="margin-top: 50px; margin-left:30px;" action="order.php" method="post">
   <div class="form-group row">
-    <label for="firstName" class="col-sm-2 col-form-label">First Name:</label>
+    <label for="firstName" class="col-sm-2 col-form-label" >First Name:</label>
     <div class="col-sm-3">
-      <input type="text" class="form-control" placeholder="first name">
+      <input type="text" class="form-control" placeholder="first name" name="firstname">
+      
     </div>
-  </div>
+  </div><br>
   <div class="form-group row">
-    <label for="lastName" class="col-sm-2 col-form-label">Last Name:</label>
+    <label for="lastName" class="col-sm-2 col-form-label" >Last Name:</label>
     <div class="col-sm-3">
-      <input type="text" class="form-control"  placeholder="last name">
+      <input type="text" class="form-control"  placeholder="last name" name="lastname">
+      
     </div>
-  </div>
+  </div><br>
+  <div class="form-group row">
+    <label for="lastName" class="col-sm-2 col-form-label">Email:</label>
+    <div class="col-sm-3">
+      <input type="text" class="form-control"  placeholder="Email Address" name="email">
+     
+    </div>
+  </div><br>
+  <div class="form-group row">
+    <label for="lastName" class="col-sm-2 col-form-label">Phone Number:</label>
+    <div class="col-sm-3">
+      <input type="text" class="form-control"  placeholder="Phone Number" name="phone">
+      
+    </div>
+  </div><br>
   <fieldset class="form-group">
     <div class="row">
       <legend class="col-form-label col-sm-2 pt-0">Payment Method: </legend>
@@ -89,8 +107,8 @@ $data = $data->fetch_assoc();
     </div>
   </fieldset>
   <div class="form-group row">
-    <div class="col-sm-10">
-      <button type="submit" class="btn btn-success" data-toggle="modal">Buy</button><br><br><br><br>
+    <div class="col-sm-10"><br>
+      <button type="submit" class="btn btn-success" data-toggle="modal" style="margin-left:250px;">Buy</button><br><br><br><br>
     </div>
   </div>
 </form>
