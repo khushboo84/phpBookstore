@@ -11,7 +11,7 @@
 <head>
     <title>Ecommerce-Project1</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href ="style.css">
+    <link rel="stylesheet" href ="/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <meta charset="UTF-8">
@@ -20,7 +20,7 @@
     
 </head>
 <body>
-<div class="body">
+<div class="body" style="background-color:#89cff0;">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href="index.php">BookWorm</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,17 +41,18 @@
 </nav>
 
 
-<div class="col-md-12">
+<div class="col-md-12" style="margin-left:30px;">
   <div class = "row">
-    <h2 class="text-center">Top Books</h2><br><br>
+    <h2 class="text-center">BOOKSTORE COLLECTION</h2><br><br>
     <?php
       while($books=mysqli_fetch_assoc($featured)):
       ?>
     
       <div class="col-sm-3" style="margin-top:60px;">
+      <img src="<?=$books['bookImage'];?>" alt="<?=$books['bookName'];?>"/>
         <h4><?=$books['bookName'];?></h4>
-        <img src="<?=$books['bookImage'];?>" alt="<?=$books['bookName'];?>"/>
-        <p class='bprice'> CAD <?=$books['bookPrice'];?></p>
+        <h6><?=$books['authorName'];?></h6>
+        CAD <?=$books['bookPrice'];?><br>
         <a href="checkout.php?bookID=<?php echo $books['bookID'];?>">
           <button type="button" class="btn btn-success" data-toggle="modal">Buy Now</button>
       </a>

@@ -20,11 +20,18 @@
             $sql = "UPDATE bookstoreinventory SET `bookQuantity` = '".$quantity."' WHERE bookID = '".$_SESSION['bookID']."';";
             $data = $connect->query($sql);    
 
-            header("Location: http://localhost/Webapps/Exercises/Project1/");
-            exit();
+            $sql = "SELECT * FROM books WHERE bookID = '".$_SESSION['bookID']."';";
+            $books = $connect->query($sql);
+
+            $books = $books->fetch_assoc();
+
+            $sql = "INSERT INTO `orders`(`bookID`, `bookName`, `price`) VALUES ('{$_SESSION['bookID']}','{$books['bookName']}','{$books['bookPrice']}')";
+            $data = $connect->query($sql);  
+
+            echo "Order placed successfully. Thank you for your visit.";
 
         } else {
-            echo '123';
+            echo 'Some error encountered. Please try again.';
         }
 
     }

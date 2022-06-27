@@ -1,6 +1,10 @@
 <?php
+$connect = mysqli_connect('localhost', 'root');
+mysqli_select_db($connect, 'bookstore');
 session_start();
 $_SESSION['bookID'] = $_GET['bookID'];
+$sql="SELECT * FROM books WHERE bookID = '".$_SESSION['bookID']."'";
+$data = $connect->query($sql);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +20,7 @@ $_SESSION['bookID'] = $_GET['bookID'];
     
 </head>
 <body>
-<div class="body">
+<div class="body" style="background-color:#89cff0;">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href="index.php">BookWorm</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,17 +39,27 @@ $_SESSION['bookID'] = $_GET['bookID'];
     </ul>
   </div>
 </nav>
+<h3> Order Details</h3>
+<?php
+$data = $data->fetch_assoc();
+?>
+<div class="order" style="margin-left:40%; margin-top:20px; margin-bottom:20px;">
+<h2><?=$data['bookName'];?></h2>
+<img src="<?=$data['bookImage'];?>"/>
+<h4><?=$data['authorName'];?></h4>
+<h4>CAD <?=$data['bookPrice'];?></h4>
+</div>
 
-<form style="margin-top: 50px;" action="order.php" method="post">
+<form style="margin-top: 50px; margin-left:30px;" action="order.php" method="post">
   <div class="form-group row">
     <label for="firstName" class="col-sm-2 col-form-label">First Name:</label>
-    <div class="col-sm-10">
+    <div class="col-sm-3">
       <input type="text" class="form-control" placeholder="first name">
     </div>
   </div>
   <div class="form-group row">
     <label for="lastName" class="col-sm-2 col-form-label">Last Name:</label>
-    <div class="col-sm-10">
+    <div class="col-sm-3">
       <input type="text" class="form-control"  placeholder="last name">
     </div>
   </div>
@@ -76,7 +90,9 @@ $_SESSION['bookID'] = $_GET['bookID'];
   </fieldset>
   <div class="form-group row">
     <div class="col-sm-10">
-      <button type="submit" class="btn btn-success" data-toggle="modal">Buy</button>
+      <button type="submit" class="btn btn-success" data-toggle="modal">Buy</button><br><br><br><br>
     </div>
   </div>
 </form>
+</body>
+</html>

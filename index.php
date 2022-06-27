@@ -20,8 +20,8 @@
     
 </head>
 <body>
-<div class="body">
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<div class="body" style="background-color:#89cff0;">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="font-size:x-large;">
   <a class="navbar-brand" href="index.php">BookWorm</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -39,17 +39,27 @@
     </ul>
   </div>
 </nav>
-<img src="./images/background_bookstore.jpg" style="width:1670px; height:800px;>
-<div class="col-md-12">
+<img src="./images/background_bookstore.jpg" style="width:1685px; height:810px;">
+
+</div>
+<div class="deco" style="margin-left:35%; margin-top:20px; margin-bottom:20px;">
+<br><br><br><br><br><br>
+  <h2> Welcome to BookWorm Bookstore </h2>
+  <a class="nav-link" href="bookstore.php"><button type="button" class="btn btn-success" data-toggle="modal"style="margin-left:15%;">Our Collection</button></a>
+<br><br><br><br><br><br><br><br>
+</div>
+<div class="body" style="background-color:#89cff0;">
+<div class="col-md-12" >
   <div class = "row">
-    <h2 class="text-center">Top Books</h2><br><br>
+    <h2 class="text-center"><b>BESTSELLER</b></h2><br><br>
     <?php
       while($books=mysqli_fetch_assoc($featured)):
       ?>
-      <div class="col-sm-3" style="margin-top:60px;">
-        <h4><?=$books['bookName'];?></h4>
+      <div class="col-sm-3" style="margin-top:60px;"> 
         <img src="<?=$books['bookImage'];?>" alt="<?=$books['bookName'];?>"/>
-        <p class='bprice'> CAD <?=$books['bookPrice'];?></p>
+        <h4><?=$books['bookName'];?></h4>
+        <h6><?=$books['authorName'];?></h6>
+        CAD <?=$books['bookPrice'];?><br>
         <a href="checkout.php?bookID=<?php echo $books['bookID'];?>">
           <button type="button" class="btn btn-success" data-toggle="modal">Buy Now</button>
       </a>
@@ -57,6 +67,8 @@
     <?php endwhile; ?>
   </div>
  </div>
+
+
 </div>
     
 </body>
